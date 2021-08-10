@@ -83,7 +83,7 @@ class Pocket_attention(layers.Layer):
         return h_prime
 
 
-class GraphConv(layers.Layer):
+class GraphAttention(layers.Layer):
     def __init__(self, max_poc_node, n_feature, n_hidden, batch_size,
                  W_layer, b_layer, W_att_self, W_att_neighbor, dropout=0.5, 
                  activation=tf.nn.relu, attn_out='concat', **kwargs):
@@ -243,7 +243,7 @@ class Ligand_attention(layers.Layer):
         return h_prime
 
 
-class GraphConv_mol(layers.Layer):
+class GraphAttention_mol(layers.Layer):
     def __init__(self, max_mol_node, n_atom_feature, n_bond_feature, n_hidden,
                  batch_size, W_layer, b_layer, W_att_self, W_att_neighbor,
                  dropout=0.5, attn_out='concat', activation=tf.nn.relu,
