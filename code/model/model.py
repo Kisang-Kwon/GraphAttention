@@ -97,7 +97,7 @@ class GAT(keras.models.Model):
         )
 
         poc_FP = self._convToFP(M_poc_hidden2, poc_mask)
-        lig_FP = self._convToFP(M_lig_hidden2, poc_mask)
+        lig_FP = self._convToFP(M_lig_hidden2, mol_mask)
 
         inter_input = tf.concat([poc_FP, lig_FP], axis=1)
         inter_output = self.Interaction_layer(inter_input, training=training)
