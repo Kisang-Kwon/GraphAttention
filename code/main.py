@@ -7,21 +7,14 @@ Last update: 21.01.22. by KS.Kwon
 - Protein residue_names data added to protein batch_data
 
 [21.01.14.]
-- Input data
-    - Protein:  PDB_extract_v3 (distance matrix)
-    - Ligand:   v1
-
 - Model structure
-    - Graph layer:          GCN
+    - Graph layer:          GAT
         - Protein layer:    2
         - Ligand layer:     2 
     - Interaction layer:    1
     - Output layer:         1
     - Dropout:              Yes
         - Keep probs:       0.5
-    - Distance coefficient: Yes 
-        - constant:         2
-    - Prediction threshold: 0.5
     - FP generating method: GCN._convToFP
     - Loss function:        Cross-entropy (softmax)
     - L2 regularization:    Yes
