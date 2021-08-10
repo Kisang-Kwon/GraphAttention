@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
-from .layer import GraphConv, GraphConv_mol, Dropout_layer, Output_layer
+from .layer import GraphAttention, GraphAttention_mol, Dropout_layer, Output_layer
 
 
 class GAT(keras.models.Model):
@@ -24,7 +24,7 @@ class GAT(keras.models.Model):
 
         self._hidden_features = [300, 200]
 
-        self.Pocket_GAT1 = GraphConv(           
+        self.Pocket_GAT1 = GraphAttention(           
             max_poc_node=GAT.max_poc_node, 
             n_feature=n_poc_feature, 
             n_hidden=self._hidden_features[0],
@@ -34,7 +34,7 @@ class GAT(keras.models.Model):
             W_att_self=W_poc_att_self[0],
             W_att_neighbor=W_poc_att_neighbor[0]
         )
-        self.Pocket_GAT2 = GraphConv(
+        self.Pocket_GAT2 = GraphAttention(
             max_poc_node=GAT.max_poc_node, 
             n_feature=self._hidden_features[0] * 3, 
             n_hidden=self._hidden_features[1],
@@ -44,7 +44,7 @@ class GAT(keras.models.Model):
             W_att_self=W_poc_att_self[1],
             W_att_neighbor=W_poc_att_neighbor[1]
         )
-        self.Ligand_GAT1 = GraphConv_mol(
+        self.Ligand_GAT1 = GraphAttention_mol(
             max_mol_node=GAT.max_mol_node, 
             n_atom_feature=n_atom_feature,
             n_bond_feature=n_bond_feature,
@@ -55,7 +55,7 @@ class GAT(keras.models.Model):
             W_att_self=W_lig_att_self[0],
             W_att_neighbor=W_lig_att_neighbor[0]
         )
-        self.Ligand_GAT2 = GraphConv_mol(
+        self.Ligand_GAT2 = GraphAttention_mol(
             max_mol_node=GAT.max_mol_node, 
             n_atom_feature=self._hidden_features[0] * 3,
             n_bond_feature=n_bond_feature,
