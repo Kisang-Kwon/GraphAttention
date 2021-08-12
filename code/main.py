@@ -55,7 +55,7 @@ def get_arguments():
     return parser.parse_args()
 
 
-def train_GAT(f_config, transfer='Autoencoder'):
+def train_GAT(f_config):
     start_time = get_time()
     args = read_config(f_config) #transfer, f_train_list, f_valid_list, pocket_dir, ligand_dir, max_poc_node, max_mol_node, epochs, learning_rate, batch_size, l2_param, checkpoint, prefix
     ckpt = args['checkpoint']
@@ -81,11 +81,11 @@ def train_GAT(f_config, transfer='Autoencoder'):
     va_total_batch = int(len(validset) / args['batch_size'])
 
     # Weights loading 
-    if args['transfer'] == 'GCN':
+    if args['transfer'] == 'GAT':
         params = os.path.join(ckpt, 'params/params.npy')
         W_poc_layer, b_poc_layer, W_poc_att_self, W_poc_att_neighbor, W_lig_layer, b_lig_layer, W_lig_att_self, W_lig_att_neighbor, W_inter, b_inter, W_out, b_out = np.load(params, allow_pickle=True)
         
-        old_params = os.path.join(ckpt, 'GCN/old_params.npy')
+        old_params = os.path.join(ckpt, 'params/old_params.npy')
         os.system(f'mv {params} {old_params}')
         
     elif args['transfer'] == 'None':
@@ -502,7 +502,7 @@ if __name__ == '__main__':
     op_args = get_arguments()
 
     if op_args.mode == 'train':
-        train_GAT(op_args.config, transfer=False)
+        train_GAT(op_args.config)
     elif op_args.mode == 'eval':
         eval_GAT(op_args.config)
     elif op_args.mode == 'predict':
