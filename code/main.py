@@ -15,7 +15,7 @@ Last update: 21.01.22. by KS.Kwon
     - Output layer:         1
     - Dropout:              Yes
         - Keep probs:       0.5
-    - FP generating method: GCN._convToFP
+    - FP generating method: GAT._convToFP
     - Loss function:        Cross-entropy (softmax)
     - L2 regularization:    Yes
 
