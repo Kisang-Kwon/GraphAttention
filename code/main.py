@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 '''
-Last update: 21.01.22. by KS.Kwon
+Last update: 21.07.22. by KS.Kwon
 
-[21.01.22.]
-- Protein residue_names data added to protein batch_data
-
-[21.01.14.]
+[21.07.14.]
 - Model structure
     - Graph layer:          GAT
         - Protein layer:    2
